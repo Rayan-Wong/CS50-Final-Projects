@@ -1,0 +1,25 @@
+{% extends "blog/layout.html" %}
+
+{% block title %}
+Edit post
+{% endblock %}
+
+{% block body %}
+    <h1>Edit post</h1>
+<form action="{% url 'edit' post.title %}" method="post">
+    {% csrf_token %}
+    <div>
+        <textarea name="content" placeholder="Lorem Ipsum" id="create-content">{{ post.content }}</textarea>    
+    </div>
+    <div>
+        {% if groups %}
+        <input type="text" name="group" placeholder="Group1, Group2, ... (optional)" id="create-group" value="{{ groups }}">
+        {% else %}
+        <input type="text" name="group" placeholder="Group1, Group2, ... (optional)" id="create-group">
+        {% endif %}
+    </div>
+    <div>
+        <input type="submit" value="Make edits">
+    </div>
+</form>
+{% endblock %}

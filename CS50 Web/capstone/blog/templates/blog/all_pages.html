@@ -1,0 +1,16 @@
+{% extends "blog/layout.html" %}
+
+{% block title %}
+    All Pages
+{% endblock %}
+
+{% block body %}
+    <h1>All Pages</h1>
+
+    <ul>
+        {% for post in posts %}
+            <li><a href="{% url 'post' post.title %}">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

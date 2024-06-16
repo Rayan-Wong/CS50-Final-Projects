@@ -1,0 +1,29 @@
+{% extends "blog/layout.html" %}
+
+{% block title %}
+    Edits
+{% endblock %}
+
+{% block body %}
+    <h1>Edits for {{ title }}</h1>
+        {% for change in changes %}
+            <div class="border border-dark">
+                <h3><a href="{% url 'edit_view' change.0.id %}">Edit #{{ change.0.id }}</a></h3>
+                <p>{{ change.0.timestamp }}</p>
+                {% if change.1.0 %}
+                <h3>Sentences added</h3>
+                {% for addition in change.1.0 %}
+                <p>Line number: {{ addition.line_number }}</p>
+                <p>{{ addition.sentence }}</p>
+                {% endfor %}
+                {% endif %}
+                {% if change.1.1 %}
+                <h3>Sentences removed</h3>
+                {% for removal in change.1.1 %}
+                <p>Line number: {{ removal.line_number }}</p>
+                <p>{{ removal.sentence }}</p>
+                {% endfor %}
+                {% endif %}
+            </div>
+        {% endfor %}
+{% endblock %}
